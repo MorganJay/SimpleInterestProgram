@@ -30,13 +30,20 @@ namespace CompoundInterestApp
 
         private static void CalculateInterest()
         {
-            Console.WriteLine("Please enter the principal amount you wish to invest..");
+            List<string> compoundIntervals = new List<string>() { "annually", "quarterly", "weekly", "daily" };
+            string compoundRate;
+            Console.WriteLine("Please enter the principal amount you wish to invest.");
             decimal principal = decimal.Parse(Console.ReadLine());
+            Console.WriteLine("Should the interest be given annually, quarterly, weekly or daily?");
+            compoundRate = Console.ReadLine().ToLower();
 
-            Console.WriteLine("Should the interest be given annually, quarterly, weekly or daily ? ");
-            var compoundRate = Console.ReadLine().ToLower();
+            do
+            {
+                Console.WriteLine("Please enter a valid input");
+                compoundRate = Console.ReadLine().ToLower();
+            } while (!compoundIntervals.Contains(compoundRate));
 
-            Console.WriteLine("Please enter the time period in months...");
+            Console.WriteLine("Please enter the time period in months.");
             decimal duration = decimal.Parse(Console.ReadLine());
 
             decimal finalAmount;
@@ -44,7 +51,7 @@ namespace CompoundInterestApp
             {
                 case "annually":
                     finalAmount = principal * (decimal)Math.Pow((double)(1 + (rate / annualCompound)), (double)(annualCompound * duration / 12));
-                    Console.WriteLine($"The total amount you will receive at the end of {duration} month(s) is {finalAmount:C}");
+                    Console.WriteLine($"You will receive {finalAmount:C} at the end of {duration} month(s).");
                     break;
 
                 case "quarterly":
@@ -60,10 +67,6 @@ namespace CompoundInterestApp
                 case "daily":
                     finalAmount = principal * (decimal)Math.Pow((double)(1 + (rate / dailyCompound)), (double)(dailyCompound * duration / 12));
                     Console.WriteLine($"OMO Lord of Lavish!! After {duration} month(s) you will cash out {finalAmount:C}");
-                    break;
-
-                default:
-                    Console.WriteLine("Invalid input");
                     break;
             }
         }
