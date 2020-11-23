@@ -37,13 +37,16 @@ namespace CompoundInterestApp
             decimal principal = decimal.Parse(Console.ReadLine());
 
             Console.WriteLine("Should the interest be given annually, quarterly, weekly or daily?");
-            _ = Console.ReadLine().ToLower();
+            compoundRate = Console.ReadLine().ToLower();
 
-            do
+            if (!compoundIntervals.Contains(compoundRate))
             {
-                Console.WriteLine("Please enter a valid input");
-                compoundRate = Console.ReadLine().ToLower();
-            } while (!compoundIntervals.Contains(compoundRate));
+                do
+                {
+                    Console.WriteLine("Please enter a valid input");
+                    compoundRate = Console.ReadLine().ToLower();
+                } while (!compoundIntervals.Contains(compoundRate));
+            }
 
             Console.WriteLine("Please enter the time period in months.");
             decimal duration = decimal.Parse(Console.ReadLine());
