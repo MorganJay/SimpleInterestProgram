@@ -32,10 +32,12 @@ namespace CompoundInterestApp
         {
             List<string> compoundIntervals = new List<string>() { "annually", "quarterly", "weekly", "daily" };
             string compoundRate;
+
             Console.WriteLine("Please enter the principal amount you wish to invest.");
             decimal principal = decimal.Parse(Console.ReadLine());
+
             Console.WriteLine("Should the interest be given annually, quarterly, weekly or daily?");
-            compoundRate = Console.ReadLine().ToLower();
+            _ = Console.ReadLine().ToLower();
 
             do
             {
